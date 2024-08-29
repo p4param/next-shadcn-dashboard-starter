@@ -12,8 +12,8 @@ import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
 const breadcrumbItems = [
-  { title: 'Equipment Commissioning', link: '/dashboard/equipComm' },
-  { title: 'Search', link: '/dashboard/equipComm' }
+  { title: 'Equipment Commissioning', link: '/ec' },
+  { title: 'Search', link: '/ec' }
 ];
 
 type paramsProps = {
@@ -42,13 +42,10 @@ export default async function equipComm({ searchParams }: paramsProps) {
       <div className="space-y-4">
         <Breadcrumbs items={breadcrumbItems} />
         <div className="flex items-start justify-between">
-          <Heading
-            title={`Equipment Commissioning`}
-            description="Manage equipment commissioning requests"
-          />
+          <Heading title={`Dosiers`} description="Manage dosiers..." />
 
           <Link
-            href={'/dashboard/equipComm/dosier/new'}
+            href={'/ec/dosier/new'}
             className={cn(buttonVariants({ variant: 'default' }))}
           >
             <Plus className="mr-2 h-4 w-4" /> Add New
