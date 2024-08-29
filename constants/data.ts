@@ -117,29 +117,29 @@ export const navItems: NavItem[] = [
     icon: 'dashboard',
     label: 'Dashboard'
   },
+  // {
+  //   title: 'User',
+  //   href: '/dashboard/user',
+  //   icon: 'user',
+  //   label: 'user'
+  // },
+  // {
+  //   title: 'Employee',
+  //   href: '/dashboard/employee',
+  //   icon: 'employee',
+  //   label: 'employee'
+  // },
+  // {
+  //   title: 'Profile',
+  //   href: '/dashboard/profile',
+  //   icon: 'profile',
+  //   label: 'profile'
+  // },
   {
-    title: 'User',
-    href: '/dashboard/user',
-    icon: 'user',
-    label: 'user'
-  },
-  {
-    title: 'Employee',
-    href: '/dashboard/employee',
-    icon: 'employee',
-    label: 'employee'
-  },
-  {
-    title: 'Profile',
-    href: '/dashboard/profile',
-    icon: 'profile',
-    label: 'profile'
-  },
-  {
-    title: 'Kanban',
-    href: '/dashboard/kanban',
+    title: 'EquipComm',
+    href: '/dashboard/equipComm/dosier',
     icon: 'kanban',
-    label: 'kanban'
+    label: 'EquipComm'
   },
   {
     title: 'Login',

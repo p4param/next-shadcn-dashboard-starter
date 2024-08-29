@@ -3,6 +3,7 @@ import Link from 'next/link';
 import UserAuthForm from '@/components/forms/user-auth-form';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Authentication',
@@ -24,59 +25,63 @@ export default function AuthenticationPage() {
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r">
         <div className="absolute inset-0 bg-zinc-900" />
         <div className="relative z-20 flex items-center text-lg font-medium">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="mr-2 h-6 w-6"
-          >
-            <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
-          </svg>
-          Logo
+          <Image
+            src="/images/Clientlogo_EXP_Logo_Red_and_White.png"
+            alt="EXP-Inc"
+            width={150}
+            height={1}
+          />
         </div>
+        <div className="relative z-20 mt-1 space-y-4">
+          <h1 className="text-1xl font-light">
+            Integrated Compliance Management System
+          </h1>
+        </div>
+
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
-            <p className="text-lg">
-              &ldquo;This library has saved me countless hours of work and
-              helped me deliver stunning designs to my clients faster than ever
-              before.&rdquo;
-            </p>
-            <footer className="text-sm">Sofia Davis</footer>
+            <footer className="text-sm">
+              Copyright © 2000 to 2024, Powered by EXP v8.0
+            </footer>
           </blockquote>
         </div>
       </div>
       <div className="flex h-full items-center p-4 lg:p-8">
-        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          <div className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">
-              Create an account
+        <div
+          className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]"
+          style={{
+            padding: '35px',
+            border: 'solid 1px rgb(95 83 83 / 25%)',
+            borderRadius: '10px',
+            boxShadow: '10px 10px 75px  rgb(95 83 83 / 50%)'
+          }}
+        >
+          <div className="flex flex-col justify-center space-y-2 text-center">
+            <h1 className="text-2xl font-thin tracking-tight">
+              <div className="mb-1 flex justify-center">
+                <Image
+                  src="/images/exp-logo.png"
+                  alt="EXP-Inc"
+                  width={110}
+                  height={1}
+                />
+              </div>
+              User Sign in
             </h1>
             <p className="text-sm text-muted-foreground">
-              Enter your email below to create your account
+              {/* Enter your email below to create your account */}
             </p>
           </div>
           <UserAuthForm />
-          <p className="px-8 text-center text-sm text-muted-foreground">
-            By clicking continue, you agree to our{' '}
-            <Link
-              href="/terms"
-              className="underline underline-offset-4 hover:text-primary"
+          <div className="flex flex-col justify-center space-y-6 text-center">
+            {/* Make separate button for below functionality for sending email */}
+            <a
+              href="/auth/signup"
+              className="text-sm text-primary hover:underline"
             >
-              Terms of Service
-            </Link>{' '}
-            and{' '}
-            <Link
-              href="/privacy"
-              className="underline underline-offset-4 hover:text-primary"
-            >
-              Privacy Policy
-            </Link>
-            .
-          </p>
+              Request your sign in info
+            </a>
+          </div>
         </div>
       </div>
     </div>

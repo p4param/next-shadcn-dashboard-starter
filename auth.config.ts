@@ -1,9 +1,20 @@
 import { NextAuthConfig } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
 import GithubProvider from 'next-auth/providers/github';
+import GoogleProvider from 'next-auth/providers/google';
+import TwitterProvider from 'next-auth/providers/twitter';
 
 const authConfig = {
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+    }),
+    TwitterProvider({
+      clientId: process.env.TWITTER_CLIENT_ID!,
+      clientSecret: process.env.TWITTER_CLIENT_SECRET!
+      // version: "2.0", // opt-in to Twitter OAuth 2.0
+    }),
     GithubProvider({
       clientId: process.env.GITHUB_ID ?? '',
       clientSecret: process.env.GITHUB_SECRET ?? ''
@@ -35,6 +46,19 @@ const authConfig = {
       }
     })
   ],
+  // callbacks: {
+
+  //     async signIn({ user }: { user: any }) {
+
+  //       // List of allowed emails
+  //       const allowedEmails = ["paramjeet.singh@exp-inc.com", "p4param@gmail.com",""];
+
+  //       if (user.email && allowedEmails.includes(user.email))
+  //           return true;
+  //       else
+  //           return false;
+  //   }
+  // },
   pages: {
     signIn: '/' //sigin page
   }

@@ -15,10 +15,15 @@ import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import GoogleSignInButton from '../github-auth-button';
+import GoogleSignInButton from '../google-auth-button';
+import GithubSignInButton from '../github-auth-button';
+import TwitterSignInButton from '../twitter-auth-button';
 
 const formSchema = z.object({
-  email: z.string().email({ message: 'Enter a valid email address' })
+  email: z.string().email({ message: 'Enter a valid email address' }),
+  password: z
+    .string()
+    .min(6, { message: 'Password must be at least 6 characters' })
 });
 
 type UserFormValue = z.infer<typeof formSchema>;
@@ -27,17 +32,18 @@ export default function UserAuthForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl');
   const [loading, setLoading] = useState(false);
-  const defaultValues = {
-    email: 'demo@gmail.com'
-  };
+  // const defaultValues = {
+  //   email: 'demo@gmail.com'
+  // };
   const form = useForm<UserFormValue>({
-    resolver: zodResolver(formSchema),
-    defaultValues
+    resolver: zodResolver(formSchema)
+    // defaultValues
   });
 
   const onSubmit = async (data: UserFormValue) => {
     signIn('credentials', {
       email: data.email,
+      password: data.password,
       callbackUrl: callbackUrl ?? '/dashboard'
     });
   };
@@ -54,11 +60,11 @@ export default function UserAuthForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                {/* <FormLabel>Email</FormLabel> */}
                 <FormControl>
                   <Input
                     type="email"
-                    placeholder="Enter your email..."
+                    placeholder="email address"
                     disabled={loading}
                     {...field}
                   />
@@ -67,9 +73,26 @@ export default function UserAuthForm() {
               </FormItem>
             )}
           />
-
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                {/* <FormLabel>Password</FormLabel> */}
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder="password"
+                    disabled={loading}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <Button disabled={loading} className="ml-auto w-full" type="submit">
-            Continue With Email
+            Sign in
           </Button>
         </form>
       </Form>
@@ -79,11 +102,13 @@ export default function UserAuthForm() {
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
+            Or sign in with
           </span>
         </div>
       </div>
       <GoogleSignInButton />
+      <TwitterSignInButton />
+      <GithubSignInButton />
     </>
   );
 }
